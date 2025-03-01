@@ -10,10 +10,22 @@
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.1.15",
+    "@assistant-ui/react": "^0.8.2",
+    "@assistant-ui/react-ai-sdk": "^0.8.0",
+    "@assistant-ui/react-markdown": "^0.8.0",
     "@mastra/core": "^0.4.4",
+    "@radix-ui/react-slot": "^1.1.2",
+    "@radix-ui/react-tooltip": "^1.1.8",
+    "ai": "^4.1.47",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.477.0",
     "next": "15.2.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "remark-gfm": "^4.0.1",
+    "tailwind-merge": "^3.0.2",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
