@@ -2,6 +2,19 @@ import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
 import { tavily } from "@tavily/core";
 
+let tavilyClient: ReturnType<typeof tavily> | null = null;
+
+const getTavilyClient = () => {
+  if (!tavilyClient) {
+    const apiKey = process.env.TAVILY_API_KEY;
+    if (!apiKey) {
+      throw new Error("TAVILY_API_KEY environment variable is not set");
+    }
+    tavilyClient = tavily({ apiKey });
+  }
+  return tavilyClient;
+};
+
 export const tavilyExtract = createTool({
   id: "Tavily Extract",
   description:
@@ -9,20 +22,14 @@ export const tavilyExtract = createTool({
   inputSchema: z.object({
     urls: z
       .array(z.string().url())
-      .max(20)
+      .max(5)
       .describe("List of URLs to extract content from (max 20)"),
   }),
   execute: async ({ context }) => {
     try {
       const { urls } = context;
-      const apiKey = process.env.TAVILY_API_KEY;
-      if (!apiKey) {
-        throw new Error("TAVILY_API_KEY environment variable is not set");
-      }
 
-      const tvly = tavily({ apiKey });
-
-      console.log("Extracting content from URLs:", urls);
+      const tvly = getTavilyClient();
 
       const response = await tvly.extract(urls, {
         extractDepth: "advanced",
@@ -88,12 +95,7 @@ export const tavilySearch = createTool({
         timeRange,
       } = context;
 
-      const apiKey = process.env.TAVILY_API_KEY;
-      if (!apiKey) {
-        throw new Error("TAVILY_API_KEY environment variable is not set");
-      }
-
-      const tvly = tavily({ apiKey });
+      const tvly = getTavilyClient();
 
       const response = await tvly.search(query, {
         searchDepth,
