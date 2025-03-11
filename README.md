@@ -1,9 +1,35 @@
+# Mastra Assistant
+
+A Next.js application powered by Mastra framework that integrates AI assistant capabilities with web search functionalities. This application leverages the Tavily API to provide real-time web search and content extraction capabilities.
+
+## Features
+
+- **AI-powered Assistant**: Utilizes OpenAI's GPT-4o model for natural language interactions
+- **Web Search Integration**: Uses Tavily Search API to provide up-to-date information from the web
+- **Content Extraction**: Extracts and summarizes content from specific URLs via Tavily Extract API
+- **Modern UI**: Clean, responsive interface built with Next.js and Tailwind CSS
+- **Assistant UI**: Powered by the assistant-ui components library for elegant chat interfaces
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+1. Set up environment variables in `.env`:
+```
+OPENAI_API_KEY=your-openai-api-key
+TAVILY_API_KEY=your-tavily-api-key
+```
 
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+3. Run the development server:
 ```bash
 npm run dev
 # or
